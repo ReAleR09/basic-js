@@ -1,8 +1,10 @@
 module.exports = function getSeason(date) {
+
     if(arguments.length != 1) {
         return 'Unable to determine the time of year!';
     }
-    if(!(date instanceof Date) || Object.getOwnPropertyNames(date).length > 0) {
+    
+    if(Object.prototype.toString.call(date) !== '[object Date]') {
         throw Error('What?!');
     }
     
@@ -19,4 +21,5 @@ module.exports = function getSeason(date) {
         case 3:
             return 'autumn';
     }
+    
 };

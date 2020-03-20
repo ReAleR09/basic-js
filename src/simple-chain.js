@@ -1,23 +1,37 @@
 const chainMaker = {
+  _chainArr: [],
+
   getLength() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    return this._chainArr.length;
   },
   addLink(value) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    this._chainArr.push(value);
+    return this;
   },
   removeLink(position) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    if(typeof position !== 'number' || position < 1 || position > this._chainArr.length) {
+      this._chainArr = [];
+      throw Error('Position out of bounds');
+    }
+    this._chainArr.splice(position - 1, 1);
+    return this;
   },
   reverseChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    this._chainArr = this._chainArr.reverse();
+    return this;
   },
   finishChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    const chain = 
+      this._chainArr
+        .map(function (val) {
+          if(val === undefined) {
+            return '( )';
+          }
+          return '( ' + val + ' )';
+        })
+        .join('~~');
+    this._chainArr = [];
+    return chain;
   }
 };
 
